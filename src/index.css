@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Anna J'olad Cosmetics (pink / white / burgundy).
+   CSS-first theme configuration (Tailwind v4).
+--------------------------------------------------------------------------- */
+@theme {
+  /* Typography — DM Sans (closest free match to Google Sans, as in the
+     brand reference). Bold weights for headings, regular for body. */
+  --font-display: "DM Sans", "Google Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "DM Sans", "Google Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-burgundy-50: #fbf3f6;
+  --color-burgundy-100: #f7e9ee;
+  --color-burgundy-200: #efd9e2;
+  --color-burgundy-300: #e3c2d0;
+  --color-burgundy-400: #c98ca8;
+  --color-burgundy-500: #a75c82;
+  --color-burgundy-600: #7b2143;
+  --color-burgundy-700: #611a34;
+  --color-burgundy-800: #4c1328;
+  --color-burgundy-900: #390c1e;
+
+  --color-blush-50: #ffffff;
+  --color-blush-100: #ffffff;
+  --color-blush-200: #fbebe8;
+  --color-blush-300: #f5ded8;
+  --color-blush-400: #ebc6bf;
+  --color-blush-500: #dc9f97;
+
+  --color-bone-50: #ffffff;
+  --color-bone-100: #ffffff;
+  --color-bone-200: #f1eeeb;
+  --color-bone-300: #e7e3df;
+  --color-bone-400: #d9d4cf;
+
+  --color-ink: #3a2c31;
+  --color-muted: #6e5f62;
+  --color-line: #e9e2d9;
+
+  --color-whatsapp: #128c7e;
+  --color-whatsapp-bright: #25d366;
+
+  --shadow-card: 0 4px 16px rgba(97, 26, 52, 0.1);
+  --shadow-lift: 0 12px 32px rgba(97, 26, 52, 0.16);
+}
+
+/* ---------------------------------------------------------------------------
+   Custom layers — animations, reveals, accordion + accessibility polish.
+   Everything respects prefers-reduced-motion (see bottom).
+--------------------------------------------------------------------------- */
+
+/* Subtle fade-up when a new page route mounts */
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-fade 240ms ease-out;
+}
+
+/* Scroll reveal (driven by the Reveal component + IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 520ms ease-out,
+    transform 520ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-enter {
+  animation: hero-fade-up 640ms ease-out both;
+}
+
+/* FAQ accordion — animates grid rows for a smooth open/close without JS */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease;
+}
+
+.faq-panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-panel__body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Cart drawer slide (transform transition handled by Tailwind classes) */
+.cart-drawer {
+  transition: transform 300ms ease;
+}
+
+/* Focus visibility for keyboard users */
+:focus-visible {
+  outline: 2px solid #611a34;
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #611a34;
+  color: #fdfbf7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------------------------
+   Global boldness lift — every weight sits one step higher than before while
+   keeping the relative hierarchy (body < strong, headings above body, etc.).
+   Weighted utilities (font-* classes) were mapped +1 in the source as well.
+--------------------------------------------------------------------------- */
+body {
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+}
+
+strong,
+b {
+  font-weight: 800;
+}
+
+/* Lock the page to the screen width. Off-canvas elements (like the closed
+   cart drawer sitting beyond the right edge) must never create sideways
+   scrolling on mobile — otherwise the layout drifts and "empty space"
+   appears at the sides. `clip` is used first; `hidden` is the fallback. */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
