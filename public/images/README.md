@@ -11,7 +11,14 @@ appears at `/images/hero.jpeg` — exactly where each component already looks fo
 | `logo.png`                       | Navbar, mobile menu, footer (brand logo) |
 | `hero-1.jpeg` … `hero-4.jpeg` | Home hero slideshow (3–4 photos, 3s each) |
 | `founder.jpeg`                   | About page — founder circle |
-| `products/<id>.jpeg`              | Each product card    |
+| `metatag.jpg`                    | Link previews (WhatsApp / Facebook / X) — must stay **1200×630** |
+
+> `metatag.jpg` is the link-preview banner. Keep the 1200×630 (1.91:1) shape:
+> that ratio is what makes WhatsApp show the big picture *above* the text.
+> Regenerate it from the master photo with
+> `powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1`
+> (master stays in `scripts/metatag-source.jpg`, outside the deployed folder).
+
 
 Product image filenames match each product's `id` field in `src/data/products.ts`:
 

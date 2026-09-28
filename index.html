@@ -34,13 +34,22 @@
 
          🖼️ TO CHANGE THE PREVIEW PICTURE: replace public/images/metatag.jpg
             (keep the same filename — no code edits needed).
+
+         📐 KEEP IT 1200 x 630 (1.91:1) — that ratio is what makes WhatsApp
+            show the big picture ABOVE the text. A square/near-square photo
+            (e.g. 1169 x 941) makes WhatsApp shrink it to a small thumbnail
+            BESIDE the text, and no meta tag can override that. Keep it under
+            300 KB too (WhatsApp skips oversized images).
+            Rebuild it from the master photo anytime with:
+              powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1
     =========================================================================== -->
     <meta property="og:url" content="https://www.annajoladcosmetics.app/" />
     <!-- Link-preview image — drop the picture at: public/images/metatag.jpg
          (absolute URL required so WhatsApp/social previews can load it). -->
     <meta property="og:image" content="https://www.annajoladcosmetics.app/images/metatag.jpg" />
-    <meta property="og:image:width" content="1169" />
-    <meta property="og:image:height" content="941" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
       content="Anna J'olad Cosmetics — beauty and self-care essentials"

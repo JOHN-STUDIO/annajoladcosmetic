@@ -70,6 +70,21 @@ When your link is pasted anywhere, the preview picture comes from
 The meta tags live at the top of `index.html` (there is a comment block there
 with full instructions).
 
+**Image shape matters more than anything else:** WhatsApp only shows the
+**big picture above the text** for a ~**1.91:1 landscape** image
+(**1200 × 630** is ideal, under 300 KB). A square/portrait photo is
+automatically shrunk to a small thumbnail *beside* the text — that layout is
+chosen by WhatsApp from the image's shape, so no meta tag can force it.
+Rebuild the banner from the master photo anytime:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1
+```
+
+(reads `scripts/metatag-source.jpg`, writes the 1200 × 630
+`public/images/metatag.jpg` — the master photo is kept outside the deployed
+folder so it isn't shipped.)
+
 **Moving to a real custom domain later?** The preview picture keeps working
 automatically (it's served by Vercel, which stays live next to your domain).
 To also show *your* domain in the shared link, update these **three** meta tags
