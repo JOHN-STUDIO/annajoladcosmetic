@@ -75,15 +75,23 @@ with full instructions).
 (**1200 × 630** is ideal, under 300 KB). A square/portrait photo is
 automatically shrunk to a small thumbnail *beside* the text — that layout is
 chosen by WhatsApp from the image's shape, so no meta tag can force it.
-Rebuild the banner from the master photo anytime:
+So the banner **is** the photo, cropped to 1.91:1 — the picture fills the whole
+frame, with no blurred backdrop and no side bars. Rebuild it from the master
+photo anytime:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1
 ```
 
-(reads `scripts/metatag-source.jpg`, writes the 1200 × 630
-`public/images/metatag.jpg` — the master photo is kept outside the deployed
-folder so it isn't shipped.)
+(reads `scripts/metatag-source.jpg`, crops the 1.91:1 slice starting at source
+row 25, and writes the 1200 × 630 `public/images/metatag.jpg` — the master photo
+is kept outside the deployed folder so it isn't shipped.)
+
+The master is taller than 1.91:1, so ~327 px of its height is trimmed by the
+crop. Which slice survives is controlled by `-Top` (the source row that becomes
+the banner's top edge) — e.g. `-Top 110` keeps more of the product row and trims
+the top of the hair, `-Top 327` hugs the bottom of the photo. Re-running it
+rewrites `public/images/metatag.jpg`; nothing else needs touching.
 
 **Moving to a real custom domain later?** The preview picture keeps working
 automatically (it's served by Vercel, which stays live next to your domain).

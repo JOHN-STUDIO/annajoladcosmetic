@@ -14,10 +14,15 @@ appears at `/images/hero.jpeg` — exactly where each component already looks fo
 | `metatag.jpg`                    | Link previews (WhatsApp / Facebook / X) — must stay **1200×630** |
 
 > `metatag.jpg` is the link-preview banner. Keep the 1200×630 (1.91:1) shape:
-> that ratio is what makes WhatsApp show the big picture *above* the text.
+> that ratio is what makes WhatsApp show the big picture *above* the text, and
+> the banner must be the picture itself — cropped to that shape, with no
+> blurred/letterboxed background filling the gaps.
 > Regenerate it from the master photo with
 > `powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1`
 > (master stays in `scripts/metatag-source.jpg`, outside the deployed folder).
+> Add `-Top <row>` to choose which horizontal slice of the photo the crop keeps
+> (default `25` = keep the subject's whole head, product row running off the
+> bottom; `-Top 110` shows more of the product row and trims the crown).
 
 
 Product image filenames match each product's `id` field in `src/data/products.ts`:
