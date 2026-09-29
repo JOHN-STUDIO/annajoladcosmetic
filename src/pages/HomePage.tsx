@@ -7,10 +7,7 @@ import TestimonialsSection from '../components/home/TestimonialsSection'
 export default function HomePage() {
   return (
     <>
-      <Seo
-        title="Anna J'olad Cosmetics | Beauty & Self-Care Essentials"
-        description="Handcrafted lip, body and hair essentials made in small batches. Shop the collection and order easily on WhatsApp."
-      />
+      <Seo path="/" />
       <Hero />
       <HowItWorks />
       <CategoryShowcase />

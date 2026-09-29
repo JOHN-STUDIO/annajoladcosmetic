@@ -11,11 +11,12 @@ export default function FAQPage() {
 
   return (
     <>
-      <Seo
-        title="FAQ | Anna J'olad Cosmetics"
-        description="How WhatsApp ordering works, delivery times, product questions and how to contact Anna J'olad Cosmetics."
+      <Seo path="/faq" />
+      <PageHeader
+        kicker="Good to know"
+        title="Frequently Asked Questions"
+        lead={`Ordering on WhatsApp, delivery times, ingredients and how to reach us — ${faqItems.length} answers to the questions we get asked most.`}
       />
-      <PageHeader title="Frequently Asked Questions" />
 
       <section className="py-14 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

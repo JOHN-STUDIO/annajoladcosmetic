@@ -6,7 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run images:meta && npm run typecheck && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr-build && node scripts/prerender.mjs",
+    "build:spa": "npm run images:meta && npm run typecheck && vite build",
+    "images:meta": "node scripts/generate-image-meta.mjs",
+    "seo:check": "node scripts/check-seo.mjs",
+    "seo:browser": "node scripts/check-browser.mjs",
+    "seo": "npm run seo:check && npm run seo:browser",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },

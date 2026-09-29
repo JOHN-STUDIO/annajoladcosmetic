@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import type { Category } from '../types'
 import { products, getCategories, getSections } from '../data/products'
 import { collectionIntros } from '../data/collections'
@@ -14,35 +13,32 @@ export default function ShopPage() {
   const location = useLocation()
   const requested = new URLSearchParams(location.search).get('category')
 
-  const initialActive: string =
+  // The URL is the single source of truth for the active filter, so a filtered
+  // view can be linked to, shared and crawled — and the tabs are real links.
+  const active: string =
     requested && categories.includes(requested as Category) ? requested : 'All'
-
-  const [active, setActive] = useState<string>(initialActive)
-
-  // Keep the filter in sync when arriving via /shop?category=… links.
-  useEffect(() => {
-    setActive(initialActive)
-  }, [requested])
+  const filterHref = (category: string): string =>
+    category === 'All' ? '/shop' : `/shop?category=${encodeURIComponent(category)}`
 
   const visible = active === 'All' ? products : products.filter((product) => product.category === active)
 
   return (
     <>
-      <Seo
-        title="Shop | Anna J'olad Cosmetics"
-        description="Browse lip glosses, soaps, body crèmes, hair crèmes, lip scrubs and balms from Anna J'olad Cosmetics. Order easily on WhatsApp."
+      <Seo path="/shop" />
+      <PageHeader
+        kicker="Made in small batches"
+        title="Shop Our Collection"
+        lead={`${products.length} handcrafted products across ${categories.join(', ')} — add what you love to your cart and send the finished order to us on WhatsApp.`}
       />
-      <PageHeader title="Shop Our Collection" />
 
       <section className="bg-bone-50 py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2.5" role="group" aria-label="Filter products by category">
             {['All', ...categories].map((category) => (
-              <button
+              <Link
                 key={category}
-                type="button"
-                aria-pressed={active === category}
-                onClick={() => setActive(category)}
+                to={filterHref(category)}
+                aria-current={active === category ? 'page' : undefined}
                 className={`rounded-[2px] border px-4.5 py-2.5 font-sans text-[13px] font-semibold uppercase tracking-[0.06em] transition-colors ${
                   active === category
                     ? 'border-burgundy-700 bg-burgundy-700 text-bone-100'
@@ -50,7 +46,7 @@ export default function ShopPage() {
                 }`}
               >
                 {category}
-              </button>
+              </Link>
             ))}
           </div>
 

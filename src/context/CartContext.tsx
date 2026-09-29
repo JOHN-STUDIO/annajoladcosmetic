@@ -26,6 +26,8 @@ function clampQuantity(quantity: number): number {
 }
 
 function readStoredLines(): CartLine[] {
+  // No window during static prerendering (scripts/prerender.mjs) — start empty.
+  if (typeof window === 'undefined') return []
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
     if (!raw) return []

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SparkleIcon } from '../ui/icons'
+import { getImageSize } from '../../data/imageDimensions'
 
 interface ProductImageProps {
   src: string
@@ -16,6 +17,12 @@ interface ProductImageProps {
    *    thumbnails and the circular founder portrait.
    */
   fit?: 'natural' | 'contain'
+  /**
+   * Set for pictures that are on screen when the page opens (the LCP image):
+   * they load immediately at high priority instead of waiting for the lazy
+   * loader. Everything below the fold should stay lazy (the default).
+   */
+  priority?: boolean
 }
 
 /**
@@ -31,9 +38,16 @@ export default function ProductImage({
   alt,
   className = '',
   aspect = 'aspect-[3/4]',
-  fit = 'natural'
+  fit = 'natural',
+  priority = false
 }: ProductImageProps) {
   const [failed, setFailed] = useState(false)
+  // Real pixel dimensions (scripts/generate-image-meta.mjs). Passing them to the
+  // <img> lets the browser reserve the right space before the file arrives, so
+  // the layout never jumps as pictures stream in (CLS = 0 from images).
+  const size = getImageSize(src)
+  const sizeAttrs = size ? { width: size.width, height: size.height } : {}
+  const loading = priority ? 'eager' : 'lazy'
 
   // Missing or unreadable image → elegant placeholder keeps the layout intact.
   if (failed || !src) {
@@ -56,7 +70,9 @@ export default function ProductImage({
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          {...sizeAttrs}
+          loading={loading}
+          fetchPriority={priority ? 'high' : undefined}
           decoding="async"
           className="size-full object-contain"
           onError={() => setFailed(true)}
@@ -71,7 +87,9 @@ export default function ProductImage({
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        {...sizeAttrs}
+        loading={loading}
+        fetchPriority={priority ? 'high' : undefined}
         decoding="async"
         className="block h-auto w-full"
         onError={() => setFailed(true)}

@@ -8,11 +8,12 @@ import TestimonialsSection from '../components/home/TestimonialsSection'
 export default function AboutPage() {
   return (
     <>
-      <Seo
-        title="About | Anna J'olad Cosmetics"
-        description="Anna J'olad Cosmetics makes safe, natural, non-harmful products for the skin, body and hair — formulated with nature and natural science."
+      <Seo path="/about" />
+      <PageHeader
+        kicker="Our story"
+        title={`Welcome to ${site.brandName}`}
+        lead="A company that makes skin, body and hair products out of a simple need: care that is safe to use, non-harmful, and natural."
       />
-      <PageHeader title={`Welcome to ${site.brandName}`} />
 
       {/* About the brand — founder portrait + speech */}
       <section className="py-16 sm:py-20">
@@ -25,10 +26,11 @@ export default function AboutPage() {
               />
               <ProductImage
                 src={site.founder.image}
-                alt="The founder of Anna J'olad Cosmetics"
+                alt={`${site.founder.name} — ${site.founder.role}`}
                 aspect="aspect-square"
                 fit="contain"
                 className="relative aspect-square rounded-full border border-line shadow-card"
+                priority
               />
             </div>
           </Reveal>

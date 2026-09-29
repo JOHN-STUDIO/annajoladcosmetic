@@ -48,11 +48,12 @@ const CONTACT_METHODS = [
 export default function ContactPage() {
   return (
     <>
-      <Seo
-        title="Contact | Anna J'olad Cosmetics"
-        description="Chat with Anna J'olad Cosmetics on WhatsApp, follow us on Instagram and TikTok, or send an email."
+      <Seo path="/contact" />
+      <PageHeader
+        kicker="Say hello"
+        title="Contact Us"
+        lead="We reply fastest on WhatsApp — your chat opens with the message ready. You can also find us on Instagram and TikTok, or send an email."
       />
-      <PageHeader title="Contact Us" />
 
       <section className="py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

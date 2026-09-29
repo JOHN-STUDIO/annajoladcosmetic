@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------
+# robots.txt — Anna J'olad Cosmetics
+# https://www.annajoladcosmetics.app/
+#
+# Everything on this site is public and meant to be found: the home page, the
+# shop, every product page, About, FAQ and Contact. The cart is a drawer rather
+# than a URL, and /images only holds pictures, so there is nothing here that
+# needs hiding from search engines.
+#
+# The sitemap (generated at build time by scripts/prerender.mjs) lists every
+# indexable URL with its last-modified date.
+# ---------------------------------------------------------------------------
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.annajoladcosmetics.app/sitemap.xml

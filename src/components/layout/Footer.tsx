@@ -20,9 +20,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-6 min-[480px]:gap-14 lg:gap-24">
           {/* Explore */}
           <nav aria-label="Footer navigation">
-            <h3 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-bone-100/70">
+            <h2 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-bone-100/70">
               Explore
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.to}>
@@ -39,9 +39,9 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="min-w-0">
-            <h3 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-bone-100/70">
+            <h2 className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-bone-100/70">
               Contact
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-3">
               <li>
                 <a

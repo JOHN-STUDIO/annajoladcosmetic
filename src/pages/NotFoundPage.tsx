@@ -4,7 +4,8 @@ import Button from '../components/ui/Button'
 export default function NotFoundPage() {
   return (
     <>
-      <Seo title="Page not found | Anna J'olad Cosmetics" />
+      {/* Unknown URLs get the 404 metadata (noindex) from src/seo/routes.ts */}
+      <Seo />
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-24 text-center">
         <p className="font-display text-7xl font-bold text-burgundy-300">404</p>
         <h1 className="font-display text-3xl font-bold text-ink">This page has wandered off</h1>

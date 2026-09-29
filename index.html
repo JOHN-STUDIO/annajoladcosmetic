@@ -5,66 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#611A34" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Anna J'olad Cosmetics | Beauty &amp; Self-Care Essentials</title>
-    <meta
-      name="description"
-      content="Anna J'olad Cosmetics — handcrafted lip, body and hair essentials made in small batches. Shop our collection and order easily on WhatsApp."
-    />
-    <meta property="og:title" content="Anna J'olad Cosmetics | Beauty & Self-Care Essentials" />
-    <meta
-      property="og:description"
-      content="Anna J'olad Cosmetics produces quality lip, body and hair care products formulated to help you look and feel your best."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Anna J'olad Cosmetics" />
-
     <!-- ===========================================================================
-         🔗 LINK PREVIEW (WhatsApp / Facebook / Twitter / Telegram …)
+         🔎 SEO + LINK PREVIEW HEAD — GENERATED, DO NOT HAND-EDIT THE TAGS
+
+         Everything between the two markers below is rewritten for every route at
+         build time by scripts/prerender.mjs, from one source of truth:
+             src/seo/routes.ts  → titles, descriptions, priorities, sitemap entries
+             src/seo/head.ts    → the <meta> / <link> / JSON-LD tags themselves
+             src/seo/jsonLd.ts  → Organization, WebSite, Product, Breadcrumb, FAQ
+         Change content in src/data/* (or the copy in src/seo/routes.ts) and run
+         `npm run build` — never edit the tags by hand.
+
+         The tags you see here are the home-page defaults used by `npm run dev`;
+         in the built site each route has its own set, and the <Seo> component
+         keeps them correct while visitors navigate.
 
          ✅ LIVE DOMAIN: https://www.annajoladcosmetics.app
-            The three meta tags below use it, and the preview picture loads from
-            the same domain (public/images/metatag.jpg deploys with the site).
-
-         🌐 IF YOU EVER CHANGE DOMAINS AGAIN — update these THREE lines only:
-              1. og:url          → https://your-new-domain/
-              2. og:image        → https://your-new-domain/images/metatag.jpg
-              3. twitter:image   → https://your-new-domain/images/metatag.jpg
-            Then redeploy, and refresh cached previews once at
+            Moving to another domain means: SITE_URL in src/seo/routes.ts +
+            public/robots.txt, rebuild, then refresh cached previews once at
             https://developers.facebook.com/tools/debug/
 
-         🖼️ TO CHANGE THE PREVIEW PICTURE: replace public/images/metatag.jpg
-            (keep the same filename — no code edits needed).
-
-         📐 KEEP IT 1200 x 630 (1.91:1) — that ratio is what makes WhatsApp
-            show the big picture ABOVE the text. A square/near-square photo
-            (e.g. 1169 x 941) makes WhatsApp shrink it to a small thumbnail
-            BESIDE the text, and no meta tag can override that (Meta simply
-            center-crops anything that isn't 1.91:1). Keep it under 300 KB
-            too (WhatsApp skips oversized images).
-            So the banner IS the photo, cropped to 1.91:1 — no blurred
-            backdrop, no letterboxing bars. Rebuild it from the master photo
-            anytime (add -Top <row> to pick a different slice of the photo):
+         🖼️ PREVIEW PICTURE: public/images/metatag.jpg — keep it 1200 x 630
+            (1.91:1) and under 300 KB, otherwise WhatsApp shows a small thumbnail
+            beside the text instead of the big picture above it. Rebuild it from
+            the master photo with:
               powershell -ExecutionPolicy Bypass -File scripts\make-og-image.ps1
+
+         🔍 GOOGLE SEARCH CONSOLE: add the property (a Domain property verified by
+            a DNS TXT record needs no code change), then submit
+            https://www.annajoladcosmetics.app/sitemap.xml
+            Prefer the HTML-tag/file method? Drop Google's verification file into
+            public/ (e.g. public/google1234abcd.html) — it deploys as-is.
     =========================================================================== -->
+    <!--seo:start-->
+    <title>Anna J'olad Cosmetics | Handcrafted Lip, Body &amp; Hair Care</title>
+    <link rel="canonical" href="https://www.annajoladcosmetics.app/" />
+    <meta
+      name="description"
+      content="Handcrafted lip glosses, soaps, body lotions and hair creams made in small batches by Anna J'olad Cosmetics. Order on WhatsApp, delivery in 24–72 hrs."
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="author" content="Anna J'olad Cosmetics" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Anna J'olad Cosmetics" />
+    <meta property="og:title" content="Anna J'olad Cosmetics | Handcrafted Lip, Body &amp; Hair Care" />
+    <meta
+      property="og:description"
+      content="Handcrafted lip glosses, soaps, body lotions and hair creams made in small batches by Anna J'olad Cosmetics. Order on WhatsApp, delivery in 24–72 hrs."
+    />
     <meta property="og:url" content="https://www.annajoladcosmetics.app/" />
-    <!-- Link-preview image — drop the picture at: public/images/metatag.jpg
-         (absolute URL required so WhatsApp/social previews can load it). -->
+    <meta property="og:locale" content="en_NG" />
     <meta property="og:image" content="https://www.annajoladcosmetics.app/images/metatag.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Anna J'olad Cosmetics — beauty and self-care essentials"
+      content="Anna J'olad Cosmetics — handcrafted lip, body and hair care"
     />
-    <!-- Twitter / X large preview card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Anna J'olad Cosmetics | Beauty & Self-Care Essentials" />
+    <meta name="twitter:title" content="Anna J'olad Cosmetics | Handcrafted Lip, Body &amp; Hair Care" />
     <meta
       name="twitter:description"
-      content="Anna J'olad Cosmetics produces quality lip, body and hair care products formulated to help you look and feel your best."
+      content="Handcrafted lip glosses, soaps, body lotions and hair creams made in small batches by Anna J'olad Cosmetics. Order on WhatsApp, delivery in 24–72 hrs."
     />
     <meta name="twitter:image" content="https://www.annajoladcosmetics.app/images/metatag.jpg" />
+    <!--seo:end-->
+
+    <link rel="apple-touch-icon" href="/images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

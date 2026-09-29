@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <>
-        <Seo title="Product not found | Anna J'olad Cosmetics" />
+        <Seo />
         <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-24 text-center">
           <span className="text-burgundy-300">
             <SparkleIcon size={32} />
@@ -42,10 +42,7 @@ export default function ProductDetailPage() {
 
   return (
     <>
-      <Seo
-        title={`${product.name} | Anna J'olad Cosmetics`}
-        description={product.shortDescription}
-      />
+      <Seo path={`/product/${product.id}`} />
 
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -67,6 +64,7 @@ export default function ProductDetailPage() {
               alt={`${product.name} — ${product.category}`}
               aspect="aspect-[4/5]"
               className="rounded-[8px]"
+              priority
             />
           </div>
 
