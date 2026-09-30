@@ -6,15 +6,16 @@ interface ProductImageProps {
   src: string
   alt: string
   className?: string
-  /** Frame shape used for the placeholder when the image file is missing. */
+  /** Frame shape: sizes the placeholder, and the fixed frame in 'contain' fit. */
   aspect?: string
   /**
    * How the picture meets its frame:
    *  - 'natural' (default) — the frame takes the picture's own proportions, so the
    *    whole picture is always visible. No cropping, no empty bars.
-   *  - 'contain' — the picture fits inside a fixed frame supplied via `className`,
-   *    with a soft background behind any spare space. Used for the small cart
-   *    thumbnails and the circular founder portrait.
+   *  - 'contain' — the picture fits inside a fixed frame (shaped by `aspect`,
+   *    with any extra `className`), with a soft background behind any spare
+   *    space. Used for the product cards (so every card image is the same
+   *    height), the small cart thumbnails and the circular founder portrait.
    */
   fit?: 'natural' | 'contain'
   /**
@@ -66,7 +67,7 @@ export default function ProductImage({
 
   if (fit === 'contain') {
     return (
-      <div className={`flex items-center justify-center overflow-hidden bg-bone-200 ${className}`.trim()}>
+      <div className={`flex items-center justify-center overflow-hidden bg-bone-200 ${aspect} ${className}`.trim()}>
         <img
           src={src}
           alt={alt}

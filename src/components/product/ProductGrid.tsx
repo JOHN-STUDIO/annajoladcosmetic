@@ -26,8 +26,10 @@ export default function ProductGrid({ products, className = '' }: ProductGridPro
     )
   }
 
+  // No `items-start` — the default `stretch` makes every card in a row the
+  // same height, so the grid stays perfectly even.
   return (
-    <div className={`grid grid-cols-2 items-start gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 ${className}`.trim()}>
+    <div className={`grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 ${className}`.trim()}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
