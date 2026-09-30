@@ -9,11 +9,7 @@ export default function AboutPage() {
   return (
     <>
       <Seo path="/about" />
-      <PageHeader
-        kicker="Our story"
-        title={`Welcome to ${site.brandName}`}
-        lead="A company that makes skin, body and hair products out of a simple need: care that is safe to use, non-harmful, and natural."
-      />
+      <PageHeader title={`Welcome to ${site.brandName}`} />
 
       {/* About the brand — founder portrait + speech */}
       <section className="py-16 sm:py-20">

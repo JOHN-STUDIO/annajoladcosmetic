@@ -25,11 +25,7 @@ export default function ShopPage() {
   return (
     <>
       <Seo path="/shop" />
-      <PageHeader
-        kicker="Made in small batches"
-        title="Shop Our Collection"
-        lead={`${products.length} handcrafted products across ${categories.join(', ')} — add what you love to your cart and send the finished order to us on WhatsApp.`}
-      />
+      <PageHeader title="Shop Our Collection" />
 
       <section className="bg-bone-50 py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
