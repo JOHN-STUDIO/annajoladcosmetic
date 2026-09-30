@@ -21,7 +21,7 @@ export const faqItems: FaqItem[] = [
     id: 'products-offered',
     question: 'What products do you offer?',
     answer:
-      'Our collection is organised into three families. Creams — Hair Bestie hair cream, a richness-in-a-jar friend for your hair, and Beauty Deep Carrot lotion, our carrot-powered body lotion. Lip care — seven flavoured glosses (cherry, brownie, strawberry, berry, citrus, peach–bubble gum and a clear shade), two lip scrubs, Plain and Tinted, and a Lip balm for dry, broken lips. And our handcrafted soaps — Papaya leaf, Coffee, cocoa and goat milk, Turmeric and goat milk, Fresh glow, and Mango and orange peel. Everything is made in small batches with skin-kind ingredients.'
+      'Our collection is organised into three families. Creams — Hair Bestie hair cream, a richness-in-a-jar friend for your hair, and Beauty Deep Carrot lotion, our carrot-powered body lotion. Lip care — seven flavoured glosses (cherry, brownie, strawberry, berry, citrus, peach–bubble gum and a clear shade), two lip scrubs, Plain and Tinted, and a Lip balm for dry, broken lips. And our handcrafted soaps — Papaya leaf, Coffee, cocoa and goat milk, Turmeric and goat milk, Fresh glow, and Mango and orange peel. Everything is made with skin-kind ingredients.'
   },
   {
     id: 'delivery-time',

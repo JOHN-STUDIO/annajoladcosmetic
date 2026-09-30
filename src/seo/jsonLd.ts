@@ -37,7 +37,7 @@ export function organizationNode(): Json {
     },
     image: absoluteUrl('/images/metatag.jpg'),
     description:
-      'Handcrafted lip, body and hair care made in small batches: Sweetlips lip glosses, Jewel Luxury soaps, body lotions and hair creams.',
+      'Handcrafted lip, body and hair care: Sweetlips lip glosses, Jewel Luxury soaps, body lotions and hair creams.',
     slogan: site.tagline,
     email: site.email,
     sameAs: [site.instagram.url, site.tiktok.url],

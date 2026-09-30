@@ -100,7 +100,7 @@ const STATIC_ROUTES: RouteSeo[] = [
     path: '/',
     title: `${site.brandName} | Handcrafted Lip, Body & Hair Care`,
     description: clampDescription(
-      `Handcrafted lip glosses, soaps, body lotions and hair creams made in small batches. Order on WhatsApp — delivery in 24–72 hrs across Nigeria.`
+      `Handcrafted lip glosses, soaps, body lotions and hair creams made with care. Order on WhatsApp — delivery in 24–72 hrs across Nigeria.`
     ),
     ogImage: DEFAULT_OG_IMAGE,
     ogImageAlt: DEFAULT_OG_IMAGE_ALT,
@@ -127,7 +127,7 @@ const STATIC_ROUTES: RouteSeo[] = [
     path: '/about',
     title: `About ${site.brandName} — Our Story & Ingredients`,
     description: clampDescription(
-      `${site.brandName} makes safe, natural, non-harmful products for skin, body and hair — handcrafted in small batches and never animal-tested.`
+      `${site.brandName} makes safe, natural, non-harmful products for skin, body and hair — handcrafted with care and never animal-tested.`
     ),
     ogImage: '/images/founder.jpeg',
     ogImageAlt: `The founder of ${site.brandName}`,
