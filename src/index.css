@@ -117,6 +117,77 @@
   transition: transform 300ms ease;
 }
 
+/* "+1" confirmation that floats up from the middle of a product image
+   when an item is added to the cart (ProductCard / ProductDetailPage).
+   translate(-50%, …) also keeps the badge centred on the image, since the
+   running animation's transform replaces any static Tailwind translate. */
+@keyframes plus-one {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 14px)) scale(0.85);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 2px)) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 46px)) scale(1);
+  }
+}
+
+.plus-one {
+  animation: plus-one 900ms ease-out both;
+}
+
+/* Mini cart-preview toast ("Added to cart") — slides up, then out. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.toast-in {
+  animation: toast-in 260ms ease-out both;
+}
+
+.toast-out {
+  animation: toast-out 220ms ease-in both;
+}
+
+/* Navbar cart badge pops whenever the item count changes. */
+@keyframes cart-badge-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-badge-pop {
+  animation: cart-badge-pop 420ms ease-out;
+}
+
 /* Focus visibility for keyboard users */
 :focus-visible {
   outline: 2px solid #611a34;

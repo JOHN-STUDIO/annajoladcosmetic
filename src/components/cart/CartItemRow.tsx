@@ -44,7 +44,7 @@ export default function CartItemRow({ product, quantity }: CartItemRowProps) {
 
           <button
             type="button"
-            className="grid size-9 shrink-0 place-items-center rounded-[2px] border border-line text-muted hover:border-burgundy-500 hover:text-burgundy-700 sm:hidden"
+            className="grid size-9 shrink-0 place-items-center rounded-[2px] border border-line text-muted transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200 sm:hidden"
             aria-label={`Remove ${product.name} from cart`}
             onClick={() => remove(product.id)}
           >
@@ -62,7 +62,7 @@ export default function CartItemRow({ product, quantity }: CartItemRowProps) {
 
         <button
           type="button"
-          className="hidden place-items-center rounded-[2px] border border-line text-muted hover:border-burgundy-500 hover:text-burgundy-700 sm:grid sm:size-9"
+          className="hidden place-items-center rounded-[2px] border border-line text-muted transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200 sm:grid sm:size-9"
           aria-label={`Remove ${product.name} from cart`}
           onClick={() => remove(product.id)}
         >

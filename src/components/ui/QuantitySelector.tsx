@@ -23,7 +23,7 @@ export default function QuantitySelector({
     <span className="inline-flex items-center gap-1" role="group" aria-label={label}>
       <button
         type="button"
-        className="grid size-10 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink hover:border-burgundy-500 hover:text-burgundy-700 disabled:opacity-40"
+        className="grid size-10 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 hover:shadow-card active:scale-90 active:bg-bone-200 disabled:opacity-40 disabled:hover:shadow-none"
         aria-label="Decrease quantity"
         onClick={decrement}
         disabled={value <= min}
@@ -35,7 +35,7 @@ export default function QuantitySelector({
       </span>
       <button
         type="button"
-        className="grid size-10 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink hover:border-burgundy-500 hover:text-burgundy-700 disabled:opacity-40"
+        className="grid size-10 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 hover:shadow-card active:scale-90 active:bg-bone-200 disabled:opacity-40 disabled:hover:shadow-none"
         aria-label="Increase quantity"
         onClick={increment}
         disabled={value >= max}

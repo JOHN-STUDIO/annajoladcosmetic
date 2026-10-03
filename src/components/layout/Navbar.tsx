@@ -43,7 +43,7 @@ export default function Navbar() {
   }, [menuOpen])
 
   const desktopLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `inline-flex items-center border-b-2 ${isActive ? 'border-burgundy-700' : 'border-transparent hover:border-burgundy-300'} px-1 pb-3 pt-1 text-[13px] font-sans font-semibold uppercase tracking-[0.08em] ${isActive ? 'text-burgundy-700' : 'text-ink hover:text-burgundy-700'}`
+    `inline-flex items-center border-b-2 transition-colors duration-200 ${isActive ? 'border-burgundy-700' : 'border-transparent hover:border-burgundy-300'} px-1 pb-3 pt-1 text-[13px] font-sans font-semibold uppercase tracking-[0.08em] ${isActive ? 'text-burgundy-700' : 'text-ink hover:text-burgundy-700'}`
 
   return (
     <header className="sticky top-0 z-30">
@@ -73,13 +73,16 @@ export default function Navbar() {
           <div className="flex items-center gap-2.5 lg:gap-4">
             <button
               type="button"
-              className="relative grid size-11 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink transition-colors hover:border-burgundy-500 hover:text-burgundy-700"
+              className="relative grid size-11 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200"
               aria-label={`Open cart, ${totalItems} item${totalItems === 1 ? '' : 's'}`}
               onClick={openCart}
             >
               <CartIcon size={20} />
               {totalItems > 0 ? (
-                <span className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-burgundy-700 text-[10px] font-bold text-bone-100">
+                <span
+                  key={totalItems}
+                  className="cart-badge-pop absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-burgundy-700 text-[10px] font-bold text-bone-100"
+                >
                   {Math.min(totalItems, 99)}
                 </span>
               ) : null}
@@ -91,7 +94,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="grid size-11 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink md:hidden"
+              className="grid size-11 place-items-center rounded-[2px] border border-line bg-bone-50 text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200 md:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -111,7 +114,7 @@ export default function Navbar() {
         >
           <button
             type="button"
-            className="absolute right-5 top-4 grid size-10 place-items-center rounded-[2px] border border-line text-ink"
+            className="absolute right-5 top-4 grid size-10 place-items-center rounded-[2px] border border-line text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200"
             aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
           >
@@ -129,7 +132,7 @@ export default function Navbar() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }: { isActive: boolean }) =>
-                  `font-display text-2xl transition-colors ${
+                  `font-display text-2xl transition-colors duration-200 ${
                     isActive ? 'font-bold text-burgundy-700' : 'text-ink hover:text-burgundy-700'
                   }`
                 }

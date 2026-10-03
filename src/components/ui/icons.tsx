@@ -231,3 +231,26 @@ export function LeafIcon({ size = 22 }: { size?: number }) {
     size
   )
 }
+
+/**
+ * Indeterminate loading spinner. Use inside a Button while an action is
+ * running (`loading` prop) so a click always gives visible feedback.
+ */
+export function SpinnerIcon({ size = 16, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.4}
+      strokeLinecap="round"
+      className={`animate-spin ${className}`.trim()}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" opacity="0.25" />
+      <path d="M21 12 a9 9 0 0 0 -9 -9" />
+    </svg>
+  )
+}

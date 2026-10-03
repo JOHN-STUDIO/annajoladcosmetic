@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getProductById, getRelatedProducts } from '../data/products'
 import { formatNaira } from '../utils/formatCurrency'
@@ -9,14 +9,41 @@ import ProductImage from '../components/product/ProductImage'
 import ProductGrid from '../components/product/ProductGrid'
 import WhatsAppButton from '../components/whatsapp/WhatsAppButton'
 import Reveal from '../components/ui/Reveal'
-import { CartIcon, SparkleIcon } from '../components/ui/icons'
+import { CartIcon, CheckIcon, SparkleIcon } from '../components/ui/icons'
 import { useCart } from '../context/CartContext'
+
+/** How long the button stays on "✓ Added" before reverting. */
+const ADDED_STATE_MS = 1600
 
 export default function ProductDetailPage() {
   const params = useParams()
   const product = params.id ? getProductById(params.id) : undefined
   const { add } = useCart()
   const [quantity, setQuantity] = useState(1)
+
+  // Click feedback: spinner → "✓ Added" + floating "+N" over the image.
+  const [phase, setPhase] = useState<'idle' | 'loading' | 'added'>('idle')
+  const [pulse, setPulse] = useState(0)
+  const revertTimer = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (revertTimer.current !== null) window.clearTimeout(revertTimer.current)
+    },
+    []
+  )
+
+  const handleAdd = () => {
+    if (phase === 'loading' || !product) return
+    setPhase('loading')
+    add(product, quantity)
+    setPulse((n) => n + 1)
+    if (revertTimer.current !== null) window.clearTimeout(revertTimer.current)
+    revertTimer.current = window.setTimeout(() => {
+      setPhase('added')
+      revertTimer.current = window.setTimeout(() => setPhase('idle'), ADDED_STATE_MS)
+    }, 350)
+  }
 
   if (!product) {
     return (
@@ -58,7 +85,7 @@ export default function ProductDetailPage() {
       <section className="bg-bone-50 py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           {/* Image */}
-          <div className="lg:sticky lg:top-24">
+          <div className="relative lg:sticky lg:top-24">
             <ProductImage
               src={product.image}
               alt={`${product.name} — ${product.category}`}
@@ -66,6 +93,16 @@ export default function ProductDetailPage() {
               className="rounded-[8px]"
               priority
             />
+            {/* Floating "+N" confirmation after adding to cart. */}
+            {pulse > 0 ? (
+              <span
+                key={pulse}
+                aria-hidden="true"
+                className="plus-one pointer-events-none absolute left-1/2 top-1/2 rounded-full bg-burgundy-700 px-4 py-2 font-sans text-base font-bold text-bone-50 shadow-lift"
+              >
+                +{quantity}
+              </span>
+            ) : null}
           </div>
 
           <div className="max-w-xl">
@@ -91,11 +128,21 @@ export default function ProductDetailPage() {
                 variant="primary"
                 size="lg"
                 className="w-full justify-center min-[480px]:w-auto"
-                onClick={() => add(product, quantity)}
+                loading={phase === 'loading'}
+                onClick={handleAdd}
                 ariaLabel={`Add ${quantity} of ${product.name} to cart`}
               >
-                <CartIcon size={18} />
-                Add to Cart
+                {phase === 'added' ? (
+                  <>
+                    <CheckIcon size={18} />
+                    Added
+                  </>
+                ) : (
+                  <>
+                    <CartIcon size={18} />
+                    Add to Cart
+                  </>
+                )}
               </Button>
             </div>
             <div className="mt-4">

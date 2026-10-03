@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { CartLine, Product } from '../types'
 import { getProductById } from '../data/products'
@@ -11,12 +11,27 @@ export interface CartContextValue {
   totalItems: number
   subtotal: number
   isOpen: boolean
+  /**
+   * Set by `add()` — the most recent "added to cart" event. Consumers
+   * (CartToast) render it as a mini cart preview; adding again replaces it
+   * (so a run of adds never stacks notifications) and retriggers the
+   * animation via `seq`.
+   */
+  lastAdded: CartAdded | null
   add: (product: Product, quantity?: number) => void
   setQuantity: (productId: string, quantity: number) => void
   remove: (productId: string) => void
   clear: () => void
   openCart: () => void
   closeCart: () => void
+  dismissAdded: () => void
+}
+
+/** A single "item added" event — seq re-animates the toast for repeat adds. */
+export interface CartAdded {
+  seq: number
+  productId: string
+  quantity: number
 }
 
 const CartContext = createContext<CartContextValue | null>(null)
@@ -58,6 +73,8 @@ function readStoredLines(): CartLine[] {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>(readStoredLines)
   const [isOpen, setIsOpen] = useState(false)
+  const [lastAdded, setLastAdded] = useState<CartAdded | null>(null)
+  const addedSeq = useRef(0)
 
   useEffect(() => {
     try {
@@ -82,7 +99,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
           }
           return [...current, { productId: product.id, quantity: qty }].slice(0, MAX_LINES)
         })
-        setIsOpen(true)
+        // Stay on the page: announce the add with a mini cart preview instead
+        // of yanking the visitor to the full cart screen (it opens on request
+        // via the toast's "View cart" or the navbar cart icon).
+        addedSeq.current += 1
+        setLastAdded({ seq: addedSeq.current, productId: product.id, quantity: qty })
       },
     []
   )
@@ -109,6 +130,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clear = useMemo(() => (): void => setLines([]), [])
   const openCart = useMemo(() => (): void => setIsOpen(true), [])
   const closeCart = useMemo(() => (): void => setIsOpen(false), [])
+  const dismissAdded = useMemo(() => (): void => setLastAdded(null), [])
 
   const totalItems = useMemo(() => lines.reduce((sum, line) => sum + line.quantity, 0), [lines])
 
@@ -126,12 +148,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     totalItems,
     subtotal,
     isOpen,
+    lastAdded,
     add,
     setQuantity,
     remove,
     clear,
     openCart,
-    closeCart
+    closeCart,
+    dismissAdded
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/layout/ScrollToTop'
 import CartDrawer from './components/cart/CartDrawer'
+import CartToast from './components/cart/CartToast'
 import PipelineBanner from './components/layout/PipelineBanner'
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
@@ -45,6 +46,7 @@ export default function App() {
       <PipelineBanner />
       <Footer />
       <CartDrawer />
+      <CartToast />
     </CartProvider>
   )
 }

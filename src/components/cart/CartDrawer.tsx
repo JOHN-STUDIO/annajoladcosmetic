@@ -69,7 +69,7 @@ export default function CartDrawer() {
           </h2>
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-[2px] border border-line text-ink hover:border-burgundy-500 hover:text-burgundy-700"
+            className="grid size-10 place-items-center rounded-[2px] border border-line text-ink transition-all duration-200 hover:border-burgundy-500 hover:text-burgundy-700 active:scale-90 active:bg-bone-200"
             aria-label="Close cart"
             onClick={closeCart}
           >
@@ -90,7 +90,7 @@ export default function CartDrawer() {
               </ul>
               <button
                 type="button"
-                className="mt-6 text-[13px] font-sans font-semibold text-burgundy-700 underline-offset-2 underline decoration-burgundy-300 hover:text-burgundy-800"
+                className="mt-6 text-[13px] font-sans font-semibold text-burgundy-700 underline-offset-2 underline decoration-burgundy-300 transition-colors duration-200 hover:text-burgundy-800 hover:decoration-burgundy-600 active:opacity-70"
                 onClick={clear}
               >
                 Clear cart

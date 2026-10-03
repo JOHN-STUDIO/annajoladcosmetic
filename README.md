@@ -123,7 +123,7 @@ src/
 │   ├── layout/               # Navbar, Footer, ScrollToTop
 │   ├── ui/                   # Button, SectionHeading, PageHeader, Seo, Reveal, icons…
 │   ├── product/              # ProductCard, ProductGrid, ProductImage
-│   ├── cart/                 # CartDrawer, CartItemRow
+│   ├── cart/                 # CartDrawer, CartItemRow, CartToast (add confirmation)
 │   ├── whatsapp/WhatsAppButton.tsx
 │   ├── faq/FAQItem.tsx
 │   ├── home/                 # Hero, HowItWorks, FeaturedProducts, …
