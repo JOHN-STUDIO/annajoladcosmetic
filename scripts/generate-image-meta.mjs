@@ -117,7 +117,7 @@ for (const file of files) {
 }
 
 const rows = entries
-  .map((entry) => `  '${entry.sitePath}': { width: ${entry.width}, height: ${entry.height} },`)
+  .map((entry) => `  "${entry.sitePath}": { width: ${entry.width}, height: ${entry.height} },`)
   .join('\n')
 
 const contents = `// ---------------------------------------------------------------------------
