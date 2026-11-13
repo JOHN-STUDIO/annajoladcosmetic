@@ -2,7 +2,7 @@
 // Shared domain types for Anna J'olad Cosmetics.
 // ---------------------------------------------------------------------------
 
-export type Category = 'Creams' | 'Lip Care' | 'Soaps'
+export type Category = 'Creams' | 'Lip Care' | 'Perfume' | 'Soaps'
 
 export interface Product {
   id: string
@@ -14,8 +14,10 @@ export interface Product {
   price: number
   description: string
   shortDescription: string
-  /** Path to the product image inside /public/images/products … */
+  /** Path to the product image inside /public/images/products … (fallback / first image) */
   image: string
+  /** Optional second image for swipeable perfume cards (e.g. front + back of bottle). */
+  image2?: string
   benefits: string[]
   howToUse: string
   size: string

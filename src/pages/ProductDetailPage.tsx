@@ -6,6 +6,7 @@ import Seo from '../components/ui/Seo'
 import Button from '../components/ui/Button'
 import QuantitySelector from '../components/ui/QuantitySelector'
 import ProductImage from '../components/product/ProductImage'
+import ProductImageCarousel from '../components/product/ProductImageCarousel'
 import ProductGrid from '../components/product/ProductGrid'
 import WhatsAppButton from '../components/whatsapp/WhatsAppButton'
 import Reveal from '../components/ui/Reveal'
@@ -86,6 +87,16 @@ export default function ProductDetailPage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           {/* Image */}
           <div className="relative lg:sticky lg:top-24">
+          {/* Perfumes get a swipeable 2-image carousel; everything else keeps the single image. */}
+          {product.category === 'Perfume' && product.image2 ? (
+            <ProductImageCarousel
+              images={[product.image, product.image2]}
+              alt={`${product.name} — ${product.category}`}
+              aspect="aspect-[4/5]"
+              className="rounded-[8px]"
+              priority
+            />
+          ) : (
             <ProductImage
               src={product.image}
               alt={`${product.name} — ${product.category}`}
@@ -93,6 +104,7 @@ export default function ProductDetailPage() {
               className="rounded-[8px]"
               priority
             />
+          )}
             {/* Floating "+N" confirmation after adding to cart. */}
             {pulse > 0 ? (
               <span

@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext'
 import { formatNaira } from '../../utils/formatCurrency'
 import Button from '../ui/Button'
 import ProductImage from './ProductImage'
+import ProductImageCarousel from './ProductImageCarousel'
 import { CartIcon, CheckIcon } from '../ui/icons'
 
 interface ProductCardProps {
@@ -51,13 +52,23 @@ export default function ProductCard({ product }: ProductCardProps) {
           {/* Fixed 4:5 frame + contain fit → every card image is exactly the
               same height (the whole photo stays visible on a soft background),
               so titles/prices/buttons line up across the whole grid. */}
-          <ProductImage
-            src={product.image}
-            alt={`${product.name} — ${product.category}`}
-            aspect="aspect-[4/5]"
-            fit="contain"
-            className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          />
+          {/* Perfumes get a swipeable 2-image carousel; everything else keeps the single image. */}
+          {product.category === 'Perfume' && product.image2 ? (
+            <ProductImageCarousel
+              images={[product.image, product.image2]}
+              alt={`${product.name} — ${product.category}`}
+              aspect="aspect-[4/5]"
+              className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+          ) : (
+            <ProductImage
+              src={product.image}
+              alt={`${product.name} — ${product.category}`}
+              aspect="aspect-[4/5]"
+              fit="contain"
+              className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+          )}
         </Link>
 
         {/* Floating "+1" confirmation over the image — one per click, keyed

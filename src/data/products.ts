@@ -42,8 +42,7 @@ export const products: Product[] = [
       'Hair Bestie — a forever friend to your hair'
     ],
     howToUse: 'Take a small amount, warm it between your palms and work through your hair. A little goes a long way.',
-    size: '200ml jar',
-    note: 'For longevity, keep product refrigerated after every use.'
+    size: '200ml jar'
   },
   {
     id: 'beauty-deep',
@@ -52,9 +51,9 @@ export const products: Product[] = [
     subcategory: 'Body lotion',
     price: 4500,
     shortDescription:
-      "Our beauty deep body lotion is formulated with one of Nature's candy, carrots!! Which packed with vitamin a and c. Helping the skin maintain and retain collagen to give the skin youthfulness. It is also moisturising and packed with rich antioxidants.",
+      "Our beauty deep body lotion is formulated with one of Nature's candy, Carrots!! Which packed with vitamin a and c. Helping the skin maintain and retain collagen to give the skin youthfulness. It is also moisturising and packed with rich antioxidants.",
     description:
-      "Our beauty deep body lotion is formulated with one of Nature's candy, carrots!! Which packed with vitamin a and c. Helping the skin maintain and retain collagen to give the skin youthfulness. It is also moisturising and packed with rich antioxidants.",
+      "Our beauty deep body lotion is formulated with one of Nature's candy, Carrots!! Which packed with vitamin a and c. Helping the skin maintain and retain collagen to give the skin youthfulness. It is also moisturising and packed with rich antioxidants.",
     image: '/images/products/Beauty Deep.jpeg',
     benefits: [
       'Formulated with carrots — Nature’s candy, rich in vitamins A and C',
@@ -113,7 +112,7 @@ export const products: Product[] = [
     name: 'Strawberry Kiss',
     category: 'Lip Care',
     subcategory: 'Lipglosses',
-    price: 2500,
+    price: 2000,
     shortDescription:
       'This Lipgloss is strawberry-flavoured with a rich pink tint and a wonderful smell. A must have for strawberry lovers.',
     description:
@@ -137,9 +136,9 @@ export const products: Product[] = [
     subcategory: 'Lipglosses',
     price: 3000,
     shortDescription:
-      'This shade of Lipgloss pays homage to the many fruits of purple like blackberry, blueberry, grapes, and plum. This tinted Lipgloss is for the bold ones who dare to stand out!!!',
+      'This deep purple tint is flavoured with juicy mixed berries. Bold, vibrant and made to turn heads!!',
     description:
-      'This shade of Lipgloss pays homage to the many fruits of purple like blackberry, blueberry, grapes, and plum. This tinted Lipgloss is for the bold ones who dare to stand out!!!',
+      'This deep purple tint is flavoured with juicy mixed berries. Bold, vibrant and made to turn heads!!',
     image: '/images/products/berry-purple.jpeg',
     benefits: [
       'Deep purple tint',
@@ -368,9 +367,9 @@ export const products: Product[] = [
     category: 'Soaps',
     price: 3000,
     shortDescription:
-      "Our mango and orange peel soap is a hybrid which helps rejuvenate the skin. Its benefits are so many and it smells divine!!",
+      "Our mango and orange peel soap is a hybrid which helps rejuvenate the skin. It's benefits are so many and it smells divine!!",
     description:
-      "Our mango and orange peel soap is a hybrid which helps rejuvenate the skin. Its benefits are so many and it smells divine!!",
+      "Our mango and orange peel soap is a hybrid which helps rejuvenate the skin. It's benefits are so many and it smells divine!!",
     image: '/images/products/Mango and orange peel soap.jpeg',
     benefits: [
       'Mango and orange peel blend',
@@ -381,6 +380,133 @@ export const products: Product[] = [
     howToUse:
       'Lather onto damp skin, massage gently, then rinse. Rest the bar on a draining soap dish between uses.',
     size: '120g bar'
+  },
+
+  // ── PERFUMES ────────────────────────────────────────────────────────────────
+  {
+    id: 'delina-exclusif-75ml',
+    name: 'Delina Exclusif',
+    category: 'Perfume',
+    price: 600000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/delina-exclusif-1.jpeg',
+    image2: '/images/products/delina-exclusif-2.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '75ml'
+  },
+  {
+    id: 'daisy-marc-jacobs',
+    name: 'Daisy Marc Jacobs',
+    category: 'Perfume',
+    price: 200000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/Daisy Marc Jacobs- 1.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'mousuf',
+    name: 'Mousuf',
+    category: 'Perfume',
+    price: 28000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/mousuf-1.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'lattafa-dukhan',
+    name: 'Lattafa Dukhan',
+    category: 'Perfume',
+    price: 45000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/lattafa-dukhan-1.jpeg',
+    image2: '/images/products/lattafa-dukhan-2.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'blue-dream',
+    name: 'Blue Dream',
+    category: 'Perfume',
+    price: 7500,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/Blue Dream.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '50ml'
+  },
+  {
+    id: 'portrait-cafe-noir',
+    name: 'Portrait cafe noir',
+    category: 'Perfume',
+    price: 35000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/portrait-cafe-noir-1.jpeg',
+    image2: '/images/products/portrait-cafe-noir-2.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'lovely-by-sjp',
+    name: 'Lovely by SJP',
+    category: 'Perfume',
+    price: 60000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/lovely-by-sjp-1.jpeg',
+    image2: '/images/products/lovely-by-sjp-2.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'yara-candy-lattafa',
+    name: 'Yara Candy by Lattafa',
+    category: 'Perfume',
+    price: 32000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/Yara Candy by Lattafa.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'ophylia-perfume',
+    name: 'Ophylia perfume',
+    category: 'Perfume',
+    price: 24000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/Ophylia perfume.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
+  },
+  {
+    id: 'supremacy-collectors-edition-pour-homme',
+    name: "Supremacy Collector's Edition Pour Homme",
+    category: 'Perfume',
+    price: 110000,
+    shortDescription: '',
+    description: '',
+    image: '/images/products/Supremacy Collector\'s Edition Pour Homme- 1.jpeg',
+    image2: '/images/products/Supremacy Collector\'s Edition Pour Homme- 2.jpeg',
+    benefits: [],
+    howToUse: '',
+    size: '100ml'
   }
 ]
 
@@ -404,7 +530,7 @@ export function getRelatedProducts(product: Product, limit = 3): Product[] {
 
 export function getCategories(): Category[] {
   // Preserve the desired shop filter order.
-  return ['Creams', 'Lip Care', 'Soaps']
+  return ['Creams', 'Lip Care', 'Perfume', 'Soaps']
 }
 
 const SECTION_TITLES: Partial<Record<Category, Array<NonNullable<Product['subcategory']>>>> = {
