@@ -128,7 +128,7 @@ export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    const audio = new Audio('/audio/background.mp3')
+    const audio = new Audio('/Christmas music.mpeg')
     audio.loop = true
     audio.muted = true
     audio.volume = 0.6
