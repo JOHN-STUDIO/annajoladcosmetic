@@ -119,16 +119,16 @@ export default function ChristmasCountdown() {
 }
 
 /**
- * Background music that auto-plays when the site loads.
- * Works on desktop and mobile — starts muted, unmutes on first user interaction.
- * Loops continuously. No visible controls.
+ * Background music that auto-plays on desktop and mobile.
+ * Android Chrome requires play() to be called directly inside a touch handler.
+ * Starts muted, unmutes + plays on first user touch/click. Loops continuously.
+ * No visible controls.
  */
 export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const hasInteracted = useRef(false)
+  const unlockedRef = useRef(false)
 
   useEffect(() => {
-    // Encode the space in the filename for URL compatibility
     const audio = new Audio(encodeURI('/Christmas music.mpeg'))
     audio.loop = true
     audio.muted = true
@@ -139,39 +139,42 @@ export function BackgroundMusic() {
       console.warn('Background music failed to load:', e)
     })
 
-    const enableAudio = () => {
-      if (hasInteracted.current) return
-      hasInteracted.current = true
+    const unlockAudio = () => {
+      if (unlockedRef.current) return
+      unlockedRef.current = true
 
+      // Android Chrome: play() MUST be called directly inside the touch/click handler
       audio.muted = false
-      audio.play().then(() => {
-        console.log('Background music playing')
-      }).catch((err) => {
-        console.warn('Playback failed, will retry on next interaction:', err)
-        // Reset so next interaction can try again
-        hasInteracted.current = false
-      })
+      const playPromise = audio.play()
 
-      document.removeEventListener('click', enableAudio)
-      document.removeEventListener('touchstart', enableAudio)
-      document.removeEventListener('keydown', enableAudio)
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Background music unlocked and playing')
+        }).catch((err) => {
+          console.warn('Android Chrome blocked playback:', err)
+          unlockedRef.current = false // allow retry on next tap
+        })
+      }
+
+      document.removeEventListener('touchend', unlockAudio)
+      document.removeEventListener('click', unlockAudio)
+      document.removeEventListener('keydown', unlockAudio)
     }
 
-    // Try autoplay immediately (muted — may be blocked on mobile)
+    // Try muted autoplay immediately (may be blocked on mobile)
     audio.play().catch(() => {
-      // Blocked — will unmute on first user interaction below
+      // Blocked — waiting for user interaction below
     })
 
-    // Multiple interaction types for mobile compatibility
-    // passive: true prevents touch events from being blocked
-    document.addEventListener('click', enableAudio, { passive: true })
-    document.addEventListener('touchstart', enableAudio, { passive: true })
-    document.addEventListener('keydown', enableAudio, { passive: true })
+    // Android Chrome needs touchend with play() called synchronously inside handler
+    document.addEventListener('touchend', unlockAudio, { passive: true })
+    document.addEventListener('click', unlockAudio, { passive: true })
+    document.addEventListener('keydown', unlockAudio, { passive: true })
 
     return () => {
-      document.removeEventListener('click', enableAudio)
-      document.removeEventListener('touchstart', enableAudio)
-      document.removeEventListener('keydown', enableAudio)
+      document.removeEventListener('touchend', unlockAudio)
+      document.removeEventListener('click', unlockAudio)
+      document.removeEventListener('keydown', unlockAudio)
       audio.pause()
       audioRef.current = null
     }
