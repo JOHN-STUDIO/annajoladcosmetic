@@ -120,12 +120,12 @@ export default function ChristmasCountdown() {
 
 /**
  * Background music that auto-plays when the site loads.
- * Browsers block audio with sound until the user interacts with the page,
- * so it starts muted and unmutes on the first click/tap.
- * No visible controls are shown.
+ * Works on desktop and mobile — starts muted, unmutes on first user interaction.
+ * Loops continuously. No visible controls.
  */
 export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const hasInteracted = useRef(false)
 
   useEffect(() => {
     // Encode the space in the filename for URL compatibility
@@ -139,31 +139,39 @@ export function BackgroundMusic() {
       console.warn('Background music failed to load:', e)
     })
 
-    const tryPlay = () => {
-      audio.play().catch((err) => {
-        console.warn('Autoplay blocked, will unmute on interaction:', err)
+    const enableAudio = () => {
+      if (hasInteracted.current) return
+      hasInteracted.current = true
+
+      audio.muted = false
+      audio.play().then(() => {
+        console.log('Background music playing')
+      }).catch((err) => {
+        console.warn('Playback failed, will retry on next interaction:', err)
+        // Reset so next interaction can try again
+        hasInteracted.current = false
       })
+
+      document.removeEventListener('click', enableAudio)
+      document.removeEventListener('touchstart', enableAudio)
+      document.removeEventListener('keydown', enableAudio)
     }
 
-    tryPlay()
+    // Try autoplay immediately (muted — may be blocked on mobile)
+    audio.play().catch(() => {
+      // Blocked — will unmute on first user interaction below
+    })
 
-    const unmute = () => {
-      if (audio.muted) {
-        audio.muted = false
-        audio.play().catch((err) => {
-          console.warn('Playback failed after interaction:', err)
-        })
-      }
-      document.removeEventListener('click', unmute)
-      document.removeEventListener('touchstart', unmute)
-    }
-
-    document.addEventListener('click', unmute, { once: true })
-    document.addEventListener('touchstart', unmute, { once: true })
+    // Multiple interaction types for mobile compatibility
+    // passive: true prevents touch events from being blocked
+    document.addEventListener('click', enableAudio, { passive: true })
+    document.addEventListener('touchstart', enableAudio, { passive: true })
+    document.addEventListener('keydown', enableAudio, { passive: true })
 
     return () => {
-      document.removeEventListener('click', unmute)
-      document.removeEventListener('touchstart', unmute)
+      document.removeEventListener('click', enableAudio)
+      document.removeEventListener('touchstart', enableAudio)
+      document.removeEventListener('keydown', enableAudio)
       audio.pause()
       audioRef.current = null
     }
