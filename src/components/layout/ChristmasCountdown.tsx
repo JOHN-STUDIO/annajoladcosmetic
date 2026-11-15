@@ -95,8 +95,8 @@ export default function ChristmasCountdown() {
       <Snowflake x="100%" y={80} size={24} opacity={0.5} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          <div className="text-center lg:text-left">
+        <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:justify-between gap-6 text-center lg:text-left">
+          <div className="flex flex-col items-center gap-2 lg:items-start lg:text-left">
             <h2 className="text-2xl font-bold text-white font-display tracking-tight sm:text-3xl">
               Christmas is Coming:
             </h2>
@@ -105,15 +105,17 @@ export default function ChristmasCountdown() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 lg:gap-4">
+          <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-6">
             <span className="text-white text-[14px] font-sans hidden lg:inline">Time remaining:</span>
-            <CountBlock value={countdown.days} label="Days" />
-            <span className="text-white text-[24px] font-bold mx-1">:</span>
-            <CountBlock value={countdown.hours} label="Hrs" />
-            <span className="text-white text-[24px] font-bold mx-1">:</span>
-            <CountBlock value={countdown.minutes} label="Min" />
-            <span className="text-white text-[24px] font-bold mx-1">:</span>
-            <CountBlock value={countdown.seconds} label="Sec" />
+            <div className="flex items-baseline gap-2 lg:gap-3">
+              <CountBlock value={countdown.days} label="DAYS" />
+              <span className="text-white text-[24px] font-bold mx-1 lg:mx-2">:</span>
+              <CountBlock value={countdown.hours} label="HRS" />
+              <span className="text-white text-[24px] font-bold mx-1 lg:mx-2">:</span>
+              <CountBlock value={countdown.minutes} label="MIN" />
+              <span className="text-white text-[24px] font-bold mx-1 lg:mx-2">:</span>
+              <CountBlock value={countdown.seconds} label="SEC" />
+            </div>
           </div>
         </div>
       </div>
