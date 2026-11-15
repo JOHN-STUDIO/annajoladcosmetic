@@ -404,6 +404,7 @@ export const products: Product[] = [
     shortDescription: '',
     description: '',
     image: '/images/products/Daisy Marc Jacobs- 1.jpeg',
+    image2: '/images/products/Daisy Marc Jacobs- 2.jpeg',
     benefits: [],
     howToUse: '',
     size: '100ml'
@@ -416,6 +417,7 @@ export const products: Product[] = [
     shortDescription: '',
     description: '',
     image: '/images/products/mousuf-1.jpeg',
+    image2: '/images/products/mousuf-2.jpeg',
     benefits: [],
     howToUse: '',
     size: '100ml'
@@ -441,6 +443,7 @@ export const products: Product[] = [
     shortDescription: '',
     description: '',
     image: '/images/products/Blue Dream.jpeg',
+    image2: '/images/products/Blue Dream- 2.jpeg',
     benefits: [],
     howToUse: '',
     size: '50ml'
@@ -479,6 +482,7 @@ export const products: Product[] = [
     shortDescription: '',
     description: '',
     image: '/images/products/Yara Candy by Lattafa.jpeg',
+    image2: '/images/products/Yara Candy by Lattafa- 2.jpeg',
     benefits: [],
     howToUse: '',
     size: '100ml'
@@ -491,6 +495,7 @@ export const products: Product[] = [
     shortDescription: '',
     description: '',
     image: '/images/products/Ophylia perfume.jpeg',
+    image2: '/images/products/Ophylia perfume- 2.jpeg',
     benefits: [],
     howToUse: '',
     size: '100ml'
