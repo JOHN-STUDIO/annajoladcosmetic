@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /** Snowflake SVG used as decorative accents on both sides of the banner. */
 function Snowflake({ x, y, size = 24, opacity = 0.6 }: { x: string | number; y: string | number; size?: number; opacity?: number }) {
@@ -68,17 +68,13 @@ export default function ChristmasCountdown() {
     return () => clearInterval(timer)
   }, [])
 
-  // Decorative snowflakes are rendered inline below (left & right edges)
-
   return (
     <section
       className="relative overflow-hidden"
       aria-label="Christmas countdown"
     >
-      {/* Background gradient — deep red */}
       <div className="absolute inset-0 bg-[linear-gradient(135deg,#7a0000_0%,#a51a1a_100%)] -z-10" />
 
-      {/* Snowflake decorations — left side */}
       <Snowflake x={12} y={10} size={28} opacity={0.5} />
       <Snowflake x={24} y={40} size={20} opacity={0.4} />
       <Snowflake x={36} y={70} size={32} opacity={0.6} />
@@ -87,7 +83,6 @@ export default function ChristmasCountdown() {
       <Snowflake x={-8} y="85%" size={30} opacity={0.4} />
       <Snowflake x={50} y="60%" size={22} opacity={0.5} />
 
-      {/* Snowflake decorations — right side */}
       <Snowflake x="92%" y={15} size={26} opacity={0.5} />
       <Snowflake x="88%" y={55} size={18} opacity={0.3} />
       <Snowflake x="96%" y={95} size={30} opacity={0.6} />
@@ -121,4 +116,51 @@ export default function ChristmasCountdown() {
       </div>
     </section>
   )
+}
+
+/**
+ * Background music that auto-plays when the site loads.
+ * Browsers block audio with sound until the user interacts with the page,
+ * so it starts muted and unmutes on the first click/tap.
+ * No visible controls are shown.
+ */
+export function BackgroundMusic() {
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  useEffect(() => {
+    const audio = new Audio('/audio/background.mp3')
+    audio.loop = true
+    audio.muted = true
+    audio.volume = 0.6
+    audioRef.current = audio
+
+    const tryPlay = () => {
+      audio.play().catch(() => {
+        // Autoplay blocked — will unmute on first user interaction below
+      })
+    }
+
+    tryPlay()
+
+    const unmute = () => {
+      if (audio.muted) {
+        audio.muted = false
+        audio.play().catch(() => {})
+      }
+      document.removeEventListener('click', unmute)
+      document.removeEventListener('touchstart', unmute)
+    }
+
+    document.addEventListener('click', unmute, { once: true })
+    document.addEventListener('touchstart', unmute, { once: true })
+
+    return () => {
+      document.removeEventListener('click', unmute)
+      document.removeEventListener('touchstart', unmute)
+      audio.pause()
+      audioRef.current = null
+    }
+  }, [])
+
+  return null
 }

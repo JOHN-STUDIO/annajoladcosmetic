@@ -8,6 +8,7 @@ import CartDrawer from './components/cart/CartDrawer'
 import CartToast from './components/cart/CartToast'
 import PipelineBanner from './components/layout/PipelineBanner'
 import ChristmasCountdown from './components/layout/ChristmasCountdown'
+import { BackgroundMusic } from './components/layout/ChristmasCountdown'
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import ProductDetailPage from './pages/ProductDetailPage'
@@ -32,6 +33,7 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <ChristmasCountdown />
+      <BackgroundMusic />
       <main id="main">
         <PageFade>
           <Routes>
