@@ -128,15 +128,20 @@ export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    const audio = new Audio('/Christmas music.mpeg')
+    // Encode the space in the filename for URL compatibility
+    const audio = new Audio(encodeURI('/Christmas music.mpeg'))
     audio.loop = true
     audio.muted = true
     audio.volume = 0.6
     audioRef.current = audio
 
+    audio.addEventListener('error', (e) => {
+      console.warn('Background music failed to load:', e)
+    })
+
     const tryPlay = () => {
-      audio.play().catch(() => {
-        // Autoplay blocked — will unmute on first user interaction below
+      audio.play().catch((err) => {
+        console.warn('Autoplay blocked, will unmute on interaction:', err)
       })
     }
 
@@ -145,7 +150,9 @@ export function BackgroundMusic() {
     const unmute = () => {
       if (audio.muted) {
         audio.muted = false
-        audio.play().catch(() => {})
+        audio.play().catch((err) => {
+          console.warn('Playback failed after interaction:', err)
+        })
       }
       document.removeEventListener('click', unmute)
       document.removeEventListener('touchstart', unmute)
